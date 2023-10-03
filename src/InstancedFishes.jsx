@@ -8,7 +8,7 @@ import { Euler, InstancedMesh, Matrix4, Vector3 } from "three";
 import { randFloatSpread } from "three/src/math/MathUtils";
 import { useFrame } from "@react-three/fiber";
 
-export default function Fishes(props) {
+export default function Fishes(props = { count: 1000 }) {
   const group = useRef();
   const { nodes, materials } = useGLTF(
     "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/fish/model.gltf"
@@ -19,11 +19,11 @@ export default function Fishes(props) {
   const dummy = useMemo(() => new Vector3(), []);
   const fishes = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < props.count; i++) {
       const position = new Vector3(
-        randFloatSpread(50),
-        randFloatSpread(50),
-        -randFloatSpread(50) - 25
+        randFloatSpread(100),
+        randFloatSpread(100),
+        -randFloatSpread(100) - 55
       );
 
       const rotation = new Vector3(
@@ -61,8 +61,10 @@ export default function Fishes(props) {
   }, []);
 
   useFrame(({ clock }) => {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < props.count; i++) {
       const fish = fishes[i];
+      if (!fish) continue;
+
       fish.position.x +=
         Math.sin((i + clock.getElapsedTime()) * 0.5) * fish.velocity;
       fish.position.y +=
@@ -93,19 +95,19 @@ export default function Fishes(props) {
     <group ref={group} {...props}>
       <instancedMesh
         ref={fishRef}
-        args={[nodes.Mesh_fish.geometry, materials.pink, 1000]}
+        args={[nodes.Mesh_fish.geometry, materials.pink, props.count]}
       >
         {/* <meshStandardMaterial /> */}
       </instancedMesh>
       <instancedMesh
         ref={greyFishRef}
-        args={[nodes.Mesh_fish_1.geometry, materials.greyLight, 1000]}
+        args={[nodes.Mesh_fish_1.geometry, materials.greyLight, props.count]}
       >
         {/* <meshStandardMaterial /> */}
       </instancedMesh>
       <instancedMesh
         ref={defaultMatFishRef}
-        args={[nodes.Mesh_fish_2.geometry, materials._defaultMat, 1000]}
+        args={[nodes.Mesh_fish_2.geometry, materials._defaultMat, props.count]}
       >
         {/* <meshStandardMaterial /> */}
       </instancedMesh>

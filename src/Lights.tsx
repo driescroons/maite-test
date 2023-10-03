@@ -11,8 +11,8 @@ export default function Lights({}: Props) {
   const directionalLight = useRef();
 
   const pointLight = useRef();
-  useHelper(directionalLight, DirectionalLightHelper, 1);
-  useHelper(pointLight, PointLightHelper, 1);
+  // useHelper(directionalLight, DirectionalLightHelper, 1);
+  // useHelper(pointLight, PointLightHelper, 1);
 
   return (
     <>
@@ -22,13 +22,13 @@ export default function Lights({}: Props) {
         <>
           <pointLight
             key={i}
-            position={[i - 5, -1, -1]}
+            position={[i - 5, -2, -1]}
             intensity={3}
             ref={pointLight}
           />
           <pointLight
             key={i}
-            position={[i - 5, 1, -1]}
+            position={[i - 5, 2, -1]}
             intensity={3}
             ref={pointLight}
           />

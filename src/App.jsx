@@ -1,81 +1,87 @@
-import {
-  Box,
-  Environment,
-  Lightformer,
-  MeshTransmissionMaterial,
-  OrbitControls,
-  TransformControls,
-  useHelper,
-} from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
-import React, { useRef } from "react";
-import { DirectionalLightHelper, PlaneGeometry } from "three";
-import Background from "./Background";
-import Camera from "./Camera";
-import Lights from "./Lights";
-import Fish from "./Fish";
-import { randFloatSpread } from "three/src/math/MathUtils";
-import Ocean from "./Ocean";
+import React from "react";
+import Experience from "./Experience";
 
 export default function App() {
   return (
-    <Canvas>
-      <Camera />
-      <Lights />
-
-      {/* <ambientLight intensity={0.4} /> */}
-
-      <Background />
-
-      <Ocean />
-      {/* <mesh>
-        <cylinderGeometry args={[10, 10, 32, 32]} />
-        <MeshTransmissionMaterial
-          clearcoat={1}
-          thickness={0.1}
-          anisotropicBlur={0.1}
-          chromaticAberration={0.1}
-          samples={8}
-          resolution={512}
+    <>
+      <div className="h-screen relative w-full flex justify-center items-center z-10">
+        <div className="m-12">
+          <div className="w-full md:w-1/2 flex flex-col gap-8 justify-center underline-offset-4">
+            <img
+              alt="Maite Croons"
+              loading="lazy"
+              width="20"
+              height="20"
+              className="ml-2"
+              src={"/mc.png"}
+            />
+            <h1 className="text-8xl font-bold">Maite Croons</h1>
+            <h2 className="text-4xl font-semibold">
+              Passionate and forward-thinking product design student
+            </h2>
+            <h3 className="text-md">
+              Constantly{" "}
+              <span className="font-semibold underline">
+                pushing the boundaries
+              </span>{" "}
+              to{" "}
+              <span className="font-semibold underline">
+                redefine the lifecycle of creations
+              </span>
+              . With a strong{" "}
+              <span className="font-semibold underline">
+                focus on innovation and sustainability
+              </span>
+              , I am dedicated to{" "}
+              <span className="font-semibold underline">
+                finding innovative solutions{" "}
+              </span>{" "}
+              within the{" "}
+              <span className="font-semibold underline">circular economy</span>.
+            </h3>
+            <div>
+              <a
+                href="mailto:contact@maitecroons.com"
+                className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-4 px-6 rounded items-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="h-6 w-6 inline-block mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Contact
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-0 w-full antialiased">
+        <img
+          alt="test"
+          src={"/steps.png"}
+          className="w-full"
+          style={{ imageRendering: "pixelated" }}
         />
-      </mesh>
-      <EffectComposer disableNormalPass multisampling={8}>
-        <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
-      </EffectComposer>
-      <Environment resolution={256}>
-        <group rotation={[-Math.PI / 3, 0, 1]}>
-          <Lightformer
-            form="circle"
-            intensity={4}
-            rotation-x={Math.PI / 2}
-            position={[0, 5, -9]}
-            scale={2}
-          />
-          <Lightformer
-            form="circle"
-            intensity={2}
-            rotation-y={Math.PI / 2}
-            position={[-5, 1, -1]}
-            scale={2}
-          />
-          <Lightformer
-            form="circle"
-            intensity={2}
-            rotation-y={Math.PI / 2}
-            position={[-5, -1, -1]}
-            scale={2}
-          />
-          <Lightformer
-            form="circle"
-            intensity={2}
-            rotation-y={-Math.PI / 2}
-            position={[10, 1, 0]}
-            scale={8}
-          />
-        </group>
-      </Environment> */}
-      {/* <OrbitControls /> */}
-    </Canvas>
+      </div>
+      <div style={{ height: "300vh" }}>
+        <div className="sticky top-0 h-screen ">
+          <Experience />
+        </div>
+      </div>
+      <div className="flex flex-col gap-8 p-24">
+        {[...Array(5)].map((_, i) => (
+          <h1 className="text-3xl font-bold">Maite Croons Project {i + 1}</h1>
+        ))}
+      </div>
+    </>
   );
 }

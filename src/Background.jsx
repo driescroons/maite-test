@@ -55,7 +55,7 @@ export default function Background() {
     <>
       <color attach="background" args={["black"]} />
       <primitive object={subRes}>
-        <meshStandardMaterial color="white" />
+        <meshBasicMaterial color="black" toneMapped={false} />
       </primitive>
       <primitive object={windowFrame}>
         <meshStandardMaterial color="gray" />

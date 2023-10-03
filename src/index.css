@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
@@ -9,5 +13,9 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
+  color: black;
+  background-color: white;
+  font-family: "Aften Screen", system, -apple-system, \.SFNSText-Regular,
+    San Francisco, Roboto, Segoe UI, Helvetica Neue, Lucida Grande, sans-serif;
 }

@@ -8,7 +8,7 @@ import { Euler, InstancedMesh, Matrix4, Vector3 } from "three";
 import { randFloatSpread } from "three/src/math/MathUtils";
 import { useFrame } from "@react-three/fiber";
 
-export default function Bottles(props) {
+export default function Bottles(props = { count: 100 }) {
   const group = useRef();
   const { nodes, materials } = useGLTF(
     "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/soda-bottle/model.gltf"
@@ -19,7 +19,7 @@ export default function Bottles(props) {
   const dummy = useMemo(() => new Vector3(), []);
   const bottlees = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < props.count; i++) {
       const position = new Vector3(
         randFloatSpread(50),
         randFloatSpread(50),
@@ -60,7 +60,7 @@ export default function Bottles(props) {
   }, []);
 
   useFrame(({ clock }) => {
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < props.count; i++) {
       const bottle = bottlees[i];
       bottle.position.x +=
         Math.sin((i + clock.getElapsedTime()) * 0.5) * bottle.velocity;
@@ -90,13 +90,17 @@ export default function Bottles(props) {
     <group ref={group} {...props}>
       <instancedMesh
         ref={bottlesRef}
-        args={[nodes.Mesh_sodaBottle.geometry, materials.brownDark, 1000]}
+        args={[
+          nodes.Mesh_sodaBottle.geometry,
+          materials.brownDark,
+          props.count,
+        ]}
       >
         {/* <meshStandardMaterial /> */}
       </instancedMesh>
       <instancedMesh
         ref={labelsRef}
-        args={[nodes.Mesh_sodaBottle_1.geometry, materials.red, 1000]}
+        args={[nodes.Mesh_sodaBottle_1.geometry, materials.red, props.count]}
       >
         {/* <meshStandardMaterial /> */}
       </instancedMesh>

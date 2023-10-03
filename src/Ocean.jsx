@@ -1,9 +1,8 @@
 import React from "react";
-import { randFloatSpread } from "three/src/math/MathUtils";
-import Fish from "./Fish";
-import Fishes from "./InstancedFishes";
 import Boat from "./Boat";
 import Bottles from "./Bottles";
+import Fishes from "./InstancedFishes";
+import { Particles } from "./Particles";
 
 export default function Ocean() {
   return (
@@ -18,7 +17,8 @@ export default function Ocean() {
           ]}
         />
       ))} */}
-      <Fishes />
+      <Particles />
+      <Fishes count={5000} />
       <Boat position={[0, 5, -5]} scale={2} />
       <Bottles count={100} />
     </>
